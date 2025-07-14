@@ -1,278 +1,283 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Music, Users, Calendar, Award, MapPin, GraduationCap, Play, ExternalLink } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { ParallaxSection } from "./parallax-section"
+import { GraduationCap, Music, Disc3, Calendar, Clock, Users, Star, MapPin, Play, ExternalLink } from "lucide-react"
 
 export function ServicesSection() {
-  const parallaxRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!parallaxRef.current || !contentRef.current) return
-
-      const scrolled = window.pageYOffset
-      const rect = contentRef.current.getBoundingClientRect()
-      const speed = 0.4
-
-      if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
-        const rate = scrolled * -speed
-        parallaxRef.current.style.transform = `translate3d(0, ${rate}px, 0)`
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const scrollToSpotify = () => {
-    const spotifySection = document.getElementById("spotify-showcase")
-    if (spotifySection) {
-      spotifySection.scrollIntoView({ behavior: "smooth" })
+  const scrollToAppleMusic = () => {
+    const element = document.getElementById("apple-music")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
   return (
-    <section ref={contentRef} className="relative py-16 overflow-hidden">
-      {/* Parallax Background */}
-      <div
-        ref={parallaxRef}
-        className="absolute inset-0 w-full h-[120%] bg-cover bg-center"
-        style={{
-          backgroundImage: `url('/placeholder.svg?height=800&width=1400&text=Jazz+Studio+Background')`,
-          willChange: "transform",
-        }}
-      />
-      <div className="absolute inset-0 bg-muted/90 backdrop-blur-sm z-10" />
-
-      <div className="relative z-20 container mx-auto px-5">
-        {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in-up">
-          <h2 className="newspaper-headline text-4xl md:text-5xl font-black tracking-tighter text-primary mb-4">
+    <ParallaxSection
+      backgroundImage="/placeholder.svg?height=800&width=1600&text=Jazz+Stage"
+      speed={0.3}
+      className="py-16 sm:py-20 lg:py-24"
+    >
+      <div className="container mx-auto px-4 sm:px-5 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="newspaper-divider mb-6 sm:mb-8"></div>
+          <h2 className="newspaper-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-4 sm:mb-6">
             PROFESSIONAL SERVICES
           </h2>
-          <div className="newspaper-divider mb-6"></div>
-          <p className="newspaper-subhead text-lg text-muted-foreground max-w-3xl mx-auto">
-            Bringing over a decade of jazz expertise to the Bay Area through personalized instruction, live
-            performances, and musical collaboration.
+          <p className="newspaper-subhead text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            Elevate your musical journey with personalized instruction and world-class performances
           </p>
+          <div className="newspaper-divider mt-6 sm:mt-8"></div>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {[
-            {
-              icon: Users,
-              title: "Private Lessons",
-              desc: "One-on-one saxophone instruction",
-              features: [
-                "Beginner to Advanced levels",
-                "Jazz improvisation techniques",
-                "Music theory & ear training",
-                "Performance preparation",
-              ],
-              button: "Book Lesson",
-              action: () => {},
-            },
-            {
-              icon: Calendar,
-              title: "Live Performances",
-              desc: "Professional gig services",
-              features: [
-                "Wedding ceremonies & receptions",
-                "Corporate events",
-                "Jazz clubs & venues",
-                "Private parties",
-              ],
-              button: "Book Gig",
-              action: () => {},
-            },
-            {
-              icon: Music,
-              title: "Latest Album",
-              desc: "Original compositions & interpretations",
-              features: [
-                "Original jazz compositions",
-                "Classic standards reimagined",
-                "Available on all platforms",
-                "Physical copies available",
-              ],
-              button: "Listen Now",
-              action: scrollToSpotify,
-            },
-            {
-              icon: Award,
-              title: "Master Classes",
-              desc: "Advanced instruction sessions",
-              features: [
-                "In-person instruction only",
-                "Advanced jazz techniques",
-                "Professional development",
-                "Time: To Be Announced",
-              ],
-              button: "Get Notified",
-              action: () => {},
-            },
-          ].map((service, index) => (
-            <Card
-              key={service.title}
-              className="border-2 border-border hover:shadow-lg transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <CardHeader className="text-center">
-                <service.icon className="h-12 w-12 text-accent mx-auto mb-4 transform group-hover:scale-110 transition-transform duration-300" />
-                <CardTitle className="newspaper-headline text-xl">{service.title}</CardTitle>
-                <CardDescription>{service.desc}</CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <ul className="text-sm space-y-2 mb-6">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="transform hover:translate-x-1 transition-transform duration-200">
-                      • {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  onClick={service.action}
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold newspaper-byline transform hover:scale-105 transition-all duration-300"
-                >
-                  {service.button}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
+          {/* Private Lessons */}
+          <Card className="bg-card/95 backdrop-blur-sm border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+            <CardContent className="p-6 sm:p-8">
+              <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent/20 to-accent/10 rounded-full border-2 border-accent/20 hover:border-accent/40 hover:scale-110 transition-all duration-300 mb-6 mx-auto shadow-lg hover:shadow-xl">
+                <GraduationCap className="h-8 w-8 sm:h-10 sm:w-10 text-accent drop-shadow-sm" />
+              </div>
+
+              <h3 className="newspaper-headline text-xl sm:text-2xl font-bold text-center mb-4">
+                Private Saxophone Lessons
+              </h3>
+
+              <div className="space-y-3 mb-6 text-sm sm:text-base">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  <span>60-minute sessions</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Users className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  <span>One-on-one instruction</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Star className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  <span>All skill levels welcome</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  <span>Bay Area locations</span>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="newspaper-byline text-xs sm:text-sm text-muted-foreground mb-4">
+                  STARTING AT $80/LESSON
+                </div>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                  Book Lesson
                 </Button>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Master Classes */}
+          <Card className="bg-card/95 backdrop-blur-sm border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 relative">
+            <Badge className="absolute -top-2 -right-2 bg-accent text-accent-foreground shadow-lg text-xs sm:text-sm">
+              Time: TBA
+            </Badge>
+            <CardContent className="p-6 sm:p-8">
+              <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-full border-2 border-secondary/20 hover:border-secondary/40 hover:scale-110 transition-all duration-300 mb-6 mx-auto shadow-lg hover:shadow-xl">
+                <Users className="h-8 w-8 sm:h-10 sm:w-10 text-secondary-foreground drop-shadow-sm" />
+              </div>
+
+              <h3 className="newspaper-headline text-xl sm:text-2xl font-bold text-center mb-4">Master Classes</h3>
+
+              <div className="space-y-3 mb-6 text-sm sm:text-base">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-secondary-foreground" />
+                  <span>To Be Announced</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Users className="h-4 w-4 sm:h-5 sm:w-5 text-secondary-foreground" />
+                  <span>Small group sessions</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5 text-secondary-foreground" />
+                  <span>Advanced techniques</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-secondary-foreground" />
+                  <span>In-person instruction only</span>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <div className="newspaper-byline text-xs sm:text-sm text-muted-foreground mb-4">RATES: TBA</div>
+                <Button
+                  variant="secondary"
+                  className="w-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+                >
+                  Get Notified
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Latest Album */}
+          <Card className="bg-card/95 backdrop-blur-sm border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+            <CardContent className="p-6 sm:p-8">
+              <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent/20 to-accent/10 rounded-full border-2 border-accent/20 hover:border-accent/40 hover:scale-110 transition-all duration-300 mb-6 mx-auto shadow-lg hover:shadow-xl">
+                <Disc3 className="h-8 w-8 sm:h-10 sm:w-10 text-accent drop-shadow-sm" />
+              </div>
+
+              <h3 className="newspaper-headline text-xl sm:text-2xl font-bold text-center mb-4">Latest Album</h3>
+
+              <div className="text-center mb-6">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-accent/20 to-accent/40 rounded-lg mx-auto mb-4 flex items-center justify-center shadow-lg">
+                  <Music className="h-8 w-8 sm:h-12 sm:w-12 text-accent-foreground" />
+                </div>
+                <h4 className="newspaper-headline text-lg sm:text-xl font-bold mb-2">Bay Area Sessions</h4>
+                <p className="text-sm sm:text-base text-muted-foreground">12 tracks • 58 minutes</p>
+              </div>
+
+              <div className="text-center">
+                <div className="newspaper-byline text-xs sm:text-sm text-muted-foreground mb-4">NOW STREAMING</div>
+                <Button
+                  onClick={scrollToAppleMusic}
+                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+                >
+                  <Play className="h-4 w-4 mr-2" />
+                  Listen Now
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* About Section */}
-        <div className="bg-card/95 backdrop-blur-sm border-2 border-border p-8 rounded-lg animate-fade-in-up delay-600 mb-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="newspaper-headline text-3xl font-black text-primary mb-4">About Michael Webster</h3>
-              <div className="space-y-4 text-justify">
-                <p className="leading-relaxed transform hover:translate-x-1 transition-transform duration-300">
-                  Michael Webster is a distinguished alto saxophonist based in the Bay Area, bringing passion and
-                  expertise to every performance and lesson. With a Master's degree in Jazz Studies, Michael combines
-                  academic excellence with real-world performance experience.
-                </p>
-                <p className="leading-relaxed transform hover:translate-x-1 transition-transform duration-300">
-                  His dedication to the craft of jazz extends beyond performance to nurturing the next generation of
-                  musicians through personalized instruction and mentorship.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                {[
-                  { icon: GraduationCap, text: "Master's in Jazz Studies" },
-                  { icon: MapPin, text: "Bay Area Based" },
-                  { icon: Award, text: "Professional Performer" },
-                  { icon: Users, text: "Accepting Students" },
-                ].map((item, index) => (
-                  <div
-                    key={item.text}
-                    className="flex items-center gap-2 transform hover:scale-105 transition-all duration-300"
-                    style={{ animationDelay: `${800 + index * 100}ms` }}
-                  >
-                    <item.icon className="h-5 w-5 text-accent" />
-                    <span className="text-sm font-medium">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="text-center animate-fade-in-up delay-700">
-              <img
-                src="/placeholder.svg?height=400&width=300&text=Michael+Webster+Portrait"
-                alt="Michael Webster"
-                className="w-full max-w-sm mx-auto border-2 border-border rounded-lg transform hover:scale-105 transition-all duration-500 hover:shadow-2xl"
-              />
-              <div className="mt-4">
-                <div className="newspaper-byline text-xs text-muted-foreground">FEATURED ARTIST</div>
-                <div className="font-medium">Michael Webster</div>
-                <div className="text-sm text-muted-foreground">Alto Saxophone</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Spotify Showcase Section */}
+        {/* Apple Music & YouTube Section */}
         <div
-          id="spotify-showcase"
-          className="bg-card/95 backdrop-blur-sm border-2 border-accent p-8 rounded-lg animate-fade-in-up delay-800"
+          id="apple-music"
+          className="bg-card/95 backdrop-blur-sm rounded-lg border-2 border-border p-6 sm:p-8 lg:p-12"
         >
-          <div className="text-center mb-8">
-            <div className="newspaper-byline text-xs text-muted-foreground mb-2">NOW STREAMING</div>
-            <h3 className="newspaper-headline text-3xl font-black text-primary mb-4">Listen on Spotify</h3>
-            <div className="newspaper-divider mb-6"></div>
-            <p className="newspaper-subhead text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience Michael Webster's latest recordings featuring original compositions and jazz standards
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="newspaper-headline text-2xl sm:text-3xl lg:text-4xl font-black text-primary mb-4">
+              Listen & Watch
+            </h3>
+            <p className="newspaper-subhead text-base sm:text-lg text-muted-foreground">
+              Stream on Apple Music and watch performances on YouTube
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Bay Area Sessions",
-                type: "Latest Album",
-                tracks: "8 tracks • 42 min",
-                image: "/placeholder.svg?height=300&width=300&text=Bay+Area+Sessions+Album+Cover",
-              },
-              {
-                title: "Jazz Standards Reimagined",
-                type: "EP",
-                tracks: "5 tracks • 28 min",
-                image: "/placeholder.svg?height=300&width=300&text=Jazz+Standards+Album+Cover",
-              },
-              {
-                title: "Live at The Blue Note",
-                type: "Live Recording",
-                tracks: "6 tracks • 38 min",
-                image: "/placeholder.svg?height=300&width=300&text=Live+Recording+Album+Cover",
-              },
-            ].map((album, index) => (
-              <Card
-                key={album.title}
-                className="border-2 border-border hover:border-accent transition-all duration-300 transform hover:scale-105 hover:shadow-xl animate-fade-in-up"
-                style={{ animationDelay: `${900 + index * 100}ms` }}
-              >
-                <CardContent className="p-6">
-                  <div className="aspect-square mb-4 overflow-hidden rounded-lg">
-                    <img
-                      src={album.image || "/placeholder.svg"}
-                      alt={album.title}
-                      className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="newspaper-headline text-lg font-bold text-primary mb-1">{album.title}</h4>
-                    <div className="newspaper-byline text-xs text-muted-foreground mb-2">{album.type}</div>
-                    <p className="text-sm text-muted-foreground mb-4">{album.tracks}</p>
+          {/* Apple Music Section */}
+          <div className="mb-12 sm:mb-16">
+            <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                <Music className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+              </div>
+              <h4 className="newspaper-headline text-xl sm:text-2xl font-bold">Apple Music</h4>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              {[
+                { title: "Bay Area Sessions", tracks: "12 tracks", duration: "58 min", type: "Album" },
+                { title: "Jazz Standards Reimagined", tracks: "8 tracks", duration: "42 min", type: "EP" },
+                { title: "Live at The Blue Note", tracks: "10 tracks", duration: "67 min", type: "Live" },
+              ].map((album, index) => (
+                <Card
+                  key={index}
+                  className="bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 border border-red-200 dark:border-red-800 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                >
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg mx-auto mb-4 flex items-center justify-center shadow-lg">
+                      <Music className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                    </div>
+                    <h5 className="font-bold text-center mb-2 text-sm sm:text-base">{album.title}</h5>
+                    <p className="text-xs sm:text-sm text-muted-foreground text-center mb-2">
+                      {album.tracks} • {album.duration}
+                    </p>
+                    <Badge variant="secondary" className="w-full justify-center text-xs">
+                      {album.type}
+                    </Badge>
                     <Button
                       size="sm"
-                      className="bg-[#1DB954] text-white hover:bg-[#1ed760] font-bold transform hover:scale-105 transition-all duration-300"
+                      className="w-full mt-4 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-xs sm:text-sm"
                     >
-                      <Play className="mr-2 h-4 w-4" />
-                      Play on Spotify
+                      <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
+                      Play on Apple Music
                     </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Button
+                variant="outline"
+                className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base bg-transparent"
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Full Apple Music Profile
+              </Button>
+            </div>
           </div>
 
-          <div className="text-center mt-8">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground font-bold newspaper-byline px-8 py-3 transform hover:scale-105 transition-all duration-300 bg-transparent"
-            >
-              <ExternalLink className="mr-2 h-5 w-5" />
-              View Full Discography
-            </Button>
+          {/* YouTube Section */}
+          <div>
+            <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-red-600 rounded-full flex items-center justify-center">
+                <Play className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+              </div>
+              <h4 className="newspaper-headline text-xl sm:text-2xl font-bold">YouTube</h4>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+              {/* Video 1 */}
+              <div className="space-y-4">
+                <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="Autumn Leaves - Live Studio Session"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="text-center">
+                  <h5 className="font-bold mb-2 text-sm sm:text-base">Autumn Leaves - Live Studio Session</h5>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    A beautiful rendition of this jazz standard featuring Michael's signature alto saxophone sound.
+                  </p>
+                </div>
+              </div>
+
+              {/* Video 2 */}
+              <div className="space-y-4">
+                <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="Bay Area Blues - Original Composition"
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="text-center">
+                  <h5 className="font-bold mb-2 text-sm sm:text-base">Bay Area Blues - Original Composition</h5>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    An original piece inspired by the vibrant jazz scene of the San Francisco Bay Area.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Button
+                variant="outline"
+                className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base bg-transparent"
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Subscribe to YouTube Channel
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </ParallaxSection>
   )
 }
