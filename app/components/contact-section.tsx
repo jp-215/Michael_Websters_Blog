@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Mail, Phone, MapPin, Clock, DollarSign, Calendar } from "lucide-react"
 
+
 export function ContactSection() {
   const parallaxRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -51,7 +52,7 @@ export function ContactSection() {
             BOOK YOUR SESSION
           </h2>
           <div className="newspaper-divider mb-6"></div>
-          <p className="newspaper-subhead text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="newspaper-subhead text-lg  max-w-3xl mx-auto">
             Ready to elevate your jazz journey? Get in touch to schedule lessons, book performances, or inquire about
             master classes.
           </p>
@@ -110,7 +111,7 @@ export function ContactSection() {
                 />
               </div>
 
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold newspaper-byline transform hover:scale-105 transition-all duration-300">
+              <Button className="w-full bg-accent hover:bg-accent/90 font-bold newspaper-byline transform hover:scale-105 transition-all duration-300">
                 Send Message
               </Button>
             </CardContent>
@@ -139,7 +140,7 @@ export function ContactSection() {
                     <item.icon className="h-5 w-5 text-accent" />
                     <div>
                       <div className="font-medium">{item.label}</div>
-                      <div className="text-sm text-muted-foreground">{item.value}</div>
+                      <div className="text-sm">{item.value}</div>
                     </div>
                   </div>
                 ))}
@@ -178,7 +179,7 @@ export function ContactSection() {
                       <span className="font-medium">{item.service}</span>
                     </div>
                     <div className="text-lg font-bold text-primary">{item.rate}</div>
-                    <div className="text-sm text-muted-foreground">{item.note}</div>
+                    <div className="text-sm">{item.note}</div>
                   </div>
                 ))}
               </CardContent>
@@ -188,7 +189,7 @@ export function ContactSection() {
             <div className="grid grid-cols-2 gap-4 animate-fade-in-up delay-600">
               <Button
                 size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold newspaper-byline transform hover:scale-105 transition-all duration-300"
+                className="bg-accent hover:bg-accent/90 font-bold newspaper-byline transform hover:scale-105 transition-all duration-300"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Book Lesson
