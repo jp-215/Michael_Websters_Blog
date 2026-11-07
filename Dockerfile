@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1.7
 
 # ---- Base: Node 22 (matches @types/node 22) ----
 FROM node:22-slim AS base
@@ -24,10 +23,11 @@ ENV NEXT_PUBLIC_EMAILJS_SERVICE_ID=$NEXT_PUBLIC_EMAILJS_SERVICE_ID \
     NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=$NEXT_PUBLIC_EMAILJS_TEMPLATE_ID \
     NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=$NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-# BASEHUB_TOKEN is a secret needed during build (static post pages query BaseHub).
-# It is mounted only for this step, so it never lands in an image layer.
-RUN --mount=type=secret,id=basehub_token \
-    BASEHUB_TOKEN="$(cat /run/secrets/basehub_token)" npm run build
+# BASEHUB_TOKEN is needed during the build (static post pages query BaseHub).
+# It is used only for this RUN and is not set as an ENV, so it is not present
+# at runtime. Railway passes its service variables as build args automatically.
+ARG BASEHUB_TOKEN
+RUN BASEHUB_TOKEN="$BASEHUB_TOKEN" npm run build
 
 # ---- Runtime: minimal image, non-root user ----
 FROM base AS runner

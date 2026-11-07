@@ -52,9 +52,8 @@ jobs:
           push: false
           load: true
           tags: michael-webster:ci
-          secrets: |
-            basehub_token=${{ secrets.BASEHUB_TOKEN }}
           build-args: |
+            BASEHUB_TOKEN=${{ secrets.BASEHUB_TOKEN }}
             NEXT_PUBLIC_EMAILJS_SERVICE_ID=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
             NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
             NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
