@@ -6,6 +6,13 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
+@layer components {
+  /* Shared content container: centered, capped width, mobile-first gutters */
+  .site-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

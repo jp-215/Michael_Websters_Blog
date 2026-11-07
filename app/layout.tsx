@@ -67,11 +67,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="flex min-h-screen flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {!isMainV0 && <Toolbar />}
           {playgroundNotification}
-          <main className="min-h-screen">{children}</main>
+          <main className="flex flex-1 flex-col">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

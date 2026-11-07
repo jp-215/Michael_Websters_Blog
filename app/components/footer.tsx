@@ -5,8 +5,8 @@ import { Mail, Phone, MapPin, Calendar, Music, Youtube } from "lucide-react"
 function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground py-8 sm:py-12">
-      <div className="container mx-auto px-4 sm:px-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
+      <div className="site-container">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4 mb-6 sm:mb-8">
           {/* Brand */}
           <div className="lg:col-span-1 text-center sm:text-left">
             <div className="mb-4">
@@ -29,7 +29,6 @@ function Footer() {
                 "Private Saxophone Lessons",
                 "Live Jazz Performances",
                 "Wedding & Event Music",
-                "Master Classes (TBA)",
                 "Jazz Workshops",
                 "Recording Sessions",
               ].map((service) => (
@@ -52,7 +51,6 @@ function Footer() {
                 "Performance Booking",
                 "Listen on Apple Music",
                 "Watch on YouTube",
-                "Master Class Updates",
                 "Contact & Rates",
               ].map((link) => (
                 <li
@@ -108,8 +106,6 @@ function Footer() {
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-primary-foreground/60">
               <span>Professional Jazz Services</span>
-              <span className="hidden sm:inline">•</span>
-              <span>Master Classes: To Be Announced</span>
               <span className="hidden sm:inline">•</span>
               <span>Streaming on Apple Music & YouTube</span>
             </div>

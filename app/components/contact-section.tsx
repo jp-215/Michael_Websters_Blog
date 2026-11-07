@@ -45,7 +45,7 @@ export function ContactSection() {
       />
       <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10" />
 
-      <div className="relative z-20 container mx-auto px-5">
+      <div className="site-container relative z-20">
         {/* Section Header */}
         <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="newspaper-headline text-4xl md:text-5xl font-black tracking-tighter text-primary mb-4">
@@ -53,8 +53,7 @@ export function ContactSection() {
           </h2>
           <div className="newspaper-divider mb-6"></div>
           <p className="newspaper-subhead text-lg  max-w-3xl mx-auto">
-            Ready to elevate your jazz journey? Get in touch to schedule lessons, book performances, or inquire about
-            master classes.
+            Ready to elevate your jazz journey? Get in touch to schedule lessons or book performances.
           </p>
         </div>
 
@@ -66,7 +65,7 @@ export function ContactSection() {
               <CardDescription>Fill out the form below and I'll get back to you within 24 hours.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input id="firstName" placeholder="Your first name" />
@@ -96,7 +95,6 @@ export function ContactSection() {
                   <SelectContent>
                     <SelectItem value="lessons">Private Lessons</SelectItem>
                     <SelectItem value="performance">Live Performance</SelectItem>
-                    <SelectItem value="masterclass">Master Class Notification</SelectItem>
                     <SelectItem value="other">Other Inquiry</SelectItem>
                   </SelectContent>
                 </Select>
@@ -162,12 +160,6 @@ export function ContactSection() {
                     rate: "Contact for quote",
                     note: "Based on event details",
                   },
-                  {
-                    icon: DollarSign,
-                    service: "Master Classes",
-                    rate: "TBA",
-                    note: "In-person only • To Be Announced",
-                  },
                 ].map((item, index) => (
                   <div
                     key={item.service}
@@ -186,7 +178,7 @@ export function ContactSection() {
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-4 animate-fade-in-up delay-600">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 animate-fade-in-up delay-600">
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 font-bold newspaper-byline transform hover:scale-105 transition-all duration-300"

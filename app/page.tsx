@@ -45,7 +45,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="flex w-full flex-col">
       <Intro />
       <ServicesSection />
       <ContactSection />

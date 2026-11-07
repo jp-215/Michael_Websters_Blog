@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ParallaxSection } from "./parallax-section"
-import { GraduationCap, Music, Disc3, Calendar, Clock, Users, Star, MapPin, Play, ExternalLink } from "lucide-react"
+import { GraduationCap, Music, Disc3, Clock, Users, Star, MapPin, Play, ExternalLink } from "lucide-react"
 
 export function ServicesSection() {
   const scrollToAppleMusic = () => {
@@ -20,7 +20,7 @@ export function ServicesSection() {
       speed={0.3}
       className="py-16 sm:py-20 lg:py-24"
     >
-      <div className="container mx-auto px-4 sm:px-5 relative z-10">
+      <div className="site-container relative z-10">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <div className="newspaper-divider mb-6 sm:mb-8"></div>
@@ -34,10 +34,7 @@ export function ServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
-
-
-
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 mb-16 sm:mb-20">
           {/* Private Lessons */}
           <Card className="border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
             <CardContent className="p-6 sm:p-8">
@@ -74,51 +71,6 @@ export function ServicesSection() {
                 </div>
                 <Button className="w-full bg-primary/30 hover:bg-primary/30 text-primary-foreground shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base">
                   Book Lesson
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-
-          
-          {/* Master Classes */}
-          <Card className="bg-card/30 border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 relative">
-            <Badge className="absolute -top-2 -right-2 bg-accent text-accent-foreground shadow-lg text-lg sm:text-sm">
-              Time: TBA
-            </Badge>
-            <CardContent className="p-6 sm:p-8">
-              <div className="flex items-center justify-center w-16 h-16 sm:w-20 lg:h-20 bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-full border-2 border-secondary/20 hover:border-secondary/40 hover:scale-110 transition-all duration-300 mb-6 mx-auto shadow-lg hover:shadow-xl">
-                <Users className="h-8 w-8 sm:h-10 sm:w-10 text-secondary-foreground drop-shadow-sm" />
-              </div>
-
-              <h3 className="newspaper-headline text-xl sm:text-2xl font-bold text-center mb-4">Master Classes</h3>
-
-              <div className="space-y-5 mb-6 text-sm lg:text-base">
-                <div className="flex items-center gap-2 ">
-                  <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span>To Be Announced</span>
-                </div>
-                <div className="flex items-center gap-2 ">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span>Small group sessions</span>
-                </div>
-                <div className="flex items-center gap-2 ">
-                  <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span>Advanced techniques</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span>In-person instruction only</span>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <div className="newspaper-byline text-xs sm:text-sm mb-4">RATES: TBA</div>
-                <Button
-                  variant="secondary"
-                  className="w-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
-                >
-                  Get Notified
                 </Button>
               </div>
             </CardContent>
@@ -161,7 +113,7 @@ export function ServicesSection() {
           className="bg-card/30  rounded-lg border-2 border-border p-6 sm:p-8 lg:p-12"
         >
           <div className="text-center mb-8 sm:mb-12">
-            <h3 className="newspaper-headline text-2xl :text-3xl lg:text-4xl font-black text-primary mb-4">
+            <h3 className="newspaper-headline text-2xl sm:text-3xl lg:text-4xl font-black text-primary mb-4">
               Listen & Watch
             </h3>
             <p className="newspaper-subhead text-base lg:text-lg">
