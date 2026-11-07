@@ -128,14 +128,14 @@ export function AlbumPlayer() {
   }
 
   return (
-    <div id={APPLE_MUSIC_PLAYER_ID} className="scroll-mt-24 mx-auto w-full max-w-5xl">
+    <div id={APPLE_MUSIC_PLAYER_ID} className="scroll-mt-24 mx-auto w-full max-w-6xl">
       {/* Cover flow: swipe or drag to browse. Tap the centered cover to open Now Playing. */}
       <Carousel setApi={setApi} opts={{ align: "center", loop: false }} className="relative w-full">
         <CarouselContent className="-ml-4 items-center">
           {CATALOG.map((item, i) => {
             const active = i === index
             return (
-              <CarouselItem key={item.id} className="basis-1/2 pl-4 sm:basis-2/5 lg:basis-1/3">
+              <CarouselItem key={item.id} className="basis-[78%] pl-4 sm:basis-[55%] lg:basis-[46%]">
                 <button
                   type="button"
                   aria-label={active ? `Open ${item.title}` : `Select ${item.title}`}
@@ -161,7 +161,7 @@ export function AlbumPlayer() {
       </Carousel>
 
       <div className="mt-6 text-center">
-        <h4 className="newspaper-headline text-2xl font-black sm:text-3xl">{track.title}</h4>
+        <h4 className="newspaper-headline text-3xl font-black sm:text-5xl">{track.title}</h4>
         <p className="newspaper-byline mt-1 text-sm text-muted-foreground">Tap the cover to play</p>
       </div>
 
