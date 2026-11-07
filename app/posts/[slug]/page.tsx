@@ -6,16 +6,8 @@ import { Post, PostFragment } from "@/app/components/post"
 import { MoreStories } from "@/app/components/more-stories"
 import { PostMetaFragment } from "@/app/components/hero-post"
 
-export const dynamic = "force-static"
-export const revalidate = 30
-
-export async function generateStaticParams() {
-  const data = await basehub().query({
-    blog: { posts: { items: { _slug: true } } },
-  })
-
-  return data.blog.posts.items.map((post) => ({ slug: post._slug }))
-}
+// Render posts per request so the build does not query BaseHub.
+export const dynamic = "force-dynamic"
 
 type PageProps = { params: Promise<{ slug: string }> }
 
