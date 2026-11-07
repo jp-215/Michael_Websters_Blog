@@ -24,10 +24,11 @@ ENV NEXT_PUBLIC_EMAILJS_SERVICE_ID=$NEXT_PUBLIC_EMAILJS_SERVICE_ID \
     NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=$NEXT_PUBLIC_EMAILJS_TEMPLATE_ID \
     NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=$NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-# BASEHUB_TOKEN is a secret needed during build (static post pages query BaseHub).
-# It is mounted only for this step, so it never lands in an image layer.
-RUN --mount=type=secret,id=basehub_token \
-    BASEHUB_TOKEN="$(cat /run/secrets/basehub_token)" npm run build
+# BASEHUB_TOKEN is needed during build (static post pages query BaseHub).
+# Railway passes service variables to the build as build args when declared via ARG.
+# It is only declared in the builder stage, so it is not present in the final runner image.
+ARG BASEHUB_TOKEN
+RUN npm run build
 
 # ---- Runtime: minimal image, non-root user ----
 FROM base AS runner
