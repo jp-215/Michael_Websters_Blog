@@ -163,7 +163,7 @@ export function ContactSection() {
                 ].map((item, index) => (
                   <div
                     key={item.service}
-                    className="border-l-4 border-accent pl-4 transform hover:translate-x-1 transition-transform duration-300"
+                    className="pl-4 transform hover:translate-x-1 transition-transform duration-300"
                     style={{ animationDelay: `${500 + index * 100}ms` }}
                   >
                     <div className="flex items-center gap-2 mb-1">

@@ -77,7 +77,7 @@ export function Post({ _title, author, date, coverImage, body }: PostFragment) {
               h2: (props) => <h2 {...props} className="newspaper-headline text-2xl font-bold text-primary mt-8 mb-4" />,
               h3: (props) => <h3 {...props} className="newspaper-headline text-xl font-bold text-primary mt-6 mb-3" />,
               blockquote: (props) => (
-                <blockquote {...props} className="border-l-4 border-accent bg-muted/30 pl-6 py-4 my-6 italic text-lg" />
+                <blockquote {...props} className="border-l-4 border-cherry bg-muted/30 pl-6 py-4 my-6 italic text-lg" />
               ),
               p: (props) => <p {...props} className="mb-4 text-justify leading-relaxed" />,
             }}

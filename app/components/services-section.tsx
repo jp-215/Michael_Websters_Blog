@@ -1,228 +1,128 @@
 "use client"
 
+import type { ReactNode } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { ParallaxSection } from "./parallax-section"
-import { GraduationCap, Music, Disc3, Clock, Users, Star, MapPin, Play, ExternalLink } from "lucide-react"
+import { AlbumPlayer } from "./album-player"
+import { GraduationCap, Clock, Users, Star, MapPin, Play, ExternalLink } from "lucide-react"
+
+// A chapter header that opens each part of the story.
+function Chapter({ kicker, title, children }: { kicker: string; title: string; children?: ReactNode }) {
+  return (
+    <header className="mb-10 text-center sm:mb-14">
+      <p className="newspaper-byline mb-3 text-xs tracking-[0.3em] text-accent sm:text-sm">{kicker}</p>
+      <h3 className="newspaper-headline text-3xl font-black text-primary sm:text-4xl lg:text-5xl">{title}</h3>
+      {children && (
+        <p className="newspaper-subhead mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">{children}</p>
+      )}
+    </header>
+  )
+}
 
 export function ServicesSection() {
-  const scrollToAppleMusic = () => {
-    const element = document.getElementById("apple-music")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
   return (
-    <ParallaxSection
-      backgroundImage="Image.jpeg"
-      speed={0.3}
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <ParallaxSection backgroundImage="Image.jpeg" speed={0.3} className="py-16 sm:py-20 lg:py-24">
       <div className="site-container relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <div className="newspaper-divider mb-6 sm:mb-8"></div>
-          <h2 className="newspaper-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-4 sm:mb-6">
+        {/* Opening */}
+        <header className="mb-16 text-center sm:mb-24">
+          <div className="newspaper-divider mb-6 sm:mb-8" />
+          <h2 className="newspaper-headline text-4xl font-black text-primary sm:text-5xl lg:text-7xl">
             PROFESSIONAL SERVICES
           </h2>
-          <p className="newspaper-subhead text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto font-black text-primary">
-            Elevate your musical journey with personalized instruction and world-class performances
+          <p className="newspaper-subhead mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl md:text-2xl">
+            A story told in three chapters: the sound, the stage, and the lesson.
           </p>
-          <div className="newspaper-divider mt-6 sm:mt-8"></div>
-        </div>
+        </header>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 mb-16 sm:mb-20">
-          {/* Private Lessons */}
-          <Card className="border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-            <CardContent className="p-6 sm:p-8">
-              <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent/20 to-accent/10 rounded-full border-2 border-accent/20 hover:border-accent/40 hover:scale-110 transition-all duration-300 mb-6 mx-auto shadow-lg hover:shadow-xl">
-                <GraduationCap className="h-8 w-8 sm:h-10 sm:w-10 text-accent " />
-              </div>
+        {/* Chapter I: the sound */}
+        <section className="mb-20 sm:mb-28">
+          <Chapter kicker="CHAPTER I" title="THE SOUND">
+            Open the record. Tap a cover, then press play.
+          </Chapter>
+          <AlbumPlayer />
+        </section>
 
-              <h3 className="newspaper-headline text-xl sm:text-3xl font-bold text-center mb-4">
-                Private Saxophone Lessons
-              </h3>
+        {/* Chapter II: the stage */}
+        <section className="mb-20 sm:mb-28">
+          <Chapter kicker="CHAPTER II" title="ON STAGE">
+            Watch a live rendition of the standard, featuring the alto saxophone.
+          </Chapter>
 
-              <div className="space-y-5 mb-6 text-lg ">
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  <span>60-minute sessions</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  <span>One-on-one instruction</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Star className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  <span>All skill levels welcome</span>
-                </div>
-                <div className="flex items-center gap-2 ">
-                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  <span>Bay Area locations</span>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <div className="newspaper-byline text-xs sm:text-sm mb-4">
-                  STARTING AT $120/LESSON
-                </div>
-                <Button className="w-full bg-primary/30 hover:bg-primary/30 text-primary-foreground shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base">
-                  Book Lesson
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Latest Album */}
-          <Card className="bg-card/30  border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-            <CardContent className="p-6 sm:p-8">
-              <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent/20 to-accent/10 rounded-full border-2 border-accent/20 hover:border-accent/40 hover:scale-110 transition-all duration-300 mb-6 mx-auto shadow-lg hover:shadow-xl">
-                <Disc3 className="h-8 w-8 sm:h-10 sm:w-10 text-accent drop-shadow-sm" />
-              </div>
-
-              <h3 className="newspaper-headline text-xl sm:text-2xl font-bold text-center mb-4">Latest Album</h3>
-
-              <div className="text-center mb-6">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-accent/20 to-accent/40 rounded-lg mx-auto mb-4 flex items-center justify-center shadow-lg">
-                  <Music className="h-8 w-8 sm:h-12 sm:w-12 text-accent-foreground" />
-                </div>
-                <h4 className="newspaper-headline text-lg sm:text-xl font-bold mb-2">Bay Area Sessions</h4>
-                <p className="text-sm sm:text-base ">12 tracks • 58 minutes</p>
-              </div>
-
-              <div className="text-center">
-                <div className="newspaper-byline text-xs sm:text-sm mb-4">NOW STREAMING</div>
-                <Button
-                  onClick={scrollToAppleMusic}
-                  className="w-full bg-accent hover:bg-accent/30 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
-                >
-                  <Play className="h-4 w-4 mr-2" />
-                  Listen Now
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Apple Music & YouTube Section */}
-        <div
-          id="apple-music"
-          className="bg-card/30  rounded-lg border-2 border-border p-6 sm:p-8 lg:p-12"
-        >
-          <div className="text-center mb-8 sm:mb-12">
-            <h3 className="newspaper-headline text-2xl sm:text-3xl lg:text-4xl font-black text-primary mb-4">
-              Listen & Watch
-            </h3>
-            <p className="newspaper-subhead text-base lg:text-lg">
-              Stream on Apple Music and watch performances on YouTube
-            </p>
-          </div>
-
-
-        {/* Apple Music Section */}
-          <div className="mb-12 sm:mb-16">
-            <div className="flex items-center justify-center gap-3 mb-8 sm:mb-10">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center">
-                <Music className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-              </div>
-              <h4 className="newspaper-headline text-2xl sm:text-3xl font-bold">Apple Music</h4>
+          <div className="mx-auto w-full max-w-4xl space-y-8">
+            <div className="flex items-center justify-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cherry text-cherry-foreground">
+                <Play className="h-4 w-4" />
+              </span>
+              <h4 className="newspaper-headline text-xl font-bold sm:text-2xl">YouTube</h4>
             </div>
 
-            <div className="flex justify-center mb-8 sm:mb-10">
-              <div className="max-w-4xl w-full">
-                <Card className="bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 border border-red-200 dark:border-red-800 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="p-6 sm:p-8 space-y-6">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg mx-auto flex items-center justify-center shadow-lg">
-                      <Music className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
-                    </div>
-
-                    <div className="text-center">
-                      <h5 className="font-bold mb-3 text-base sm:text-lg">Bay Area Sessions</h5>
-                      <p className="text-sm sm:text-base mb-2">
-                        12 tracks • 58 min
-                      </p>
-
-                      <ul className = "w-full justify-center text-lg mb-6 ">
-                        <li>St. Cecilia</li>
-                        <li>Body and Soul</li>
-                        <li>Confirmation</li>
-                        <li>For Andrew</li>
-                      </ul>
-                   
-                      <Badge variant="secondary" className="w-full justify-center text-sm mb-4 gap-6">
-                        Album
-                      </Badge>
-
-                      
-
-                      <a 
-                         href="https://music.apple.com/us/album/introducing-michael-webster/1822675860" // Replace with your actual link
-                         target="_blank"
-                         rel="noopener noreferrer"
-                      
-                      > 
-                      <Button
-                        size="sm"
-                        className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
-                      >
-                        <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                        Play on Apple Music
-                      </Button>
-
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-
-
-
-          {/* YouTube Section */}
-          <div>
-            <div className="flex items-center justify-center  mb-10 sm:mb-8">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-red-600 rounded-full flex items-center justify-center">
-                <Play className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-              </div>
-              <h4 className="newspaper-headline text-xl sm:text-2xl font-bold">YouTube</h4>
+            <div className="aspect-video overflow-hidden rounded-lg bg-black shadow-2xl">
+              <iframe
+                src="https://www.youtube.com/embed/uKx_0PwRIFg"
+                title="Introducing: Michael Webster"
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
 
-            <div className="flex justify-center mb-10 sm:mb-10">
-              <div className="space-y-4 max-w-7xl w-full">
-                <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
-                  <iframe
-                    src="https://www.youtube.com/embed/uKx_0PwRIFg"
-                    title="Introducing: Michael Webster"
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <div className="text-center">
-                  <h3 className="font-bold mb-2 text">Introducing: Michael Webster</h3>
-                  <p className="text-xs sm:text-sm">
-                    A beautiful rendition of this jazz standard featuring Michael's signature alto saxophone sound.
-                  </p>
-                </div>
-              </div>
+            <div className="text-center">
+              <h5 className="mb-2 font-bold">Introducing: Michael Webster</h5>
+              <p className="text-sm text-muted-foreground sm:text-base">
+                A beautiful rendition of this jazz standard featuring Michael&apos;s signature alto saxophone sound.
+              </p>
             </div>
 
             <div className="text-center">
               <Button
                 variant="outline"
-                className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base bg-transparent"
+                className="border-cherry bg-transparent text-foreground shadow-lg transition-all duration-300 hover:bg-cherry hover:text-cherry-foreground hover:shadow-xl sm:text-base"
               >
-                <ExternalLink className="h-4 w-4 mr-2" />
+                <ExternalLink className="mr-2 h-4 w-4" />
                 Subscribe to YouTube Channel
               </Button>
             </div>
           </div>
+        </section>
 
-        </div>
+        {/* Chapter III: the lesson (placed after the stage, per the story) */}
+        <section>
+          <Chapter kicker="CHAPTER III" title="THE LESSON">
+            Learn the sound yourself, one session at a time.
+          </Chapter>
+
+          <div className="mx-auto w-full max-w-xl rounded-xl bg-card p-6 shadow-2xl sm:p-10">
+            <h3 className="newspaper-headline mb-6 text-center text-2xl font-bold text-primary sm:text-3xl">
+              Private Saxophone Lessons
+            </h3>
+
+            <div className="mb-8 space-y-4 text-base sm:text-lg">
+              <div className="flex items-center gap-3">
+                <Clock className="h-5 w-5 text-accent" />
+                <span>60-minute sessions</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Users className="h-5 w-5 text-accent" />
+                <span>One-on-one instruction</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Star className="h-5 w-5 text-accent" />
+                <span>All skill levels welcome</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="h-5 w-5 text-accent" />
+                <span>Bay Area locations</span>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="newspaper-byline mb-4 text-xs text-muted-foreground sm:text-sm">STARTING AT $120/LESSON</p>
+              <Button className="w-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl sm:text-base">
+                Book Lesson
+              </Button>
+            </div>
+          </div>
+        </section>
       </div>
     </ParallaxSection>
   )
