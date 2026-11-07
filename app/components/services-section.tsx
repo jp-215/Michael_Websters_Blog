@@ -4,16 +4,20 @@ import type { ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { ParallaxSection } from "./parallax-section"
 import { AlbumPlayer } from "./album-player"
-import { GraduationCap, Clock, Users, Star, MapPin, Play, ExternalLink } from "lucide-react"
+import { StoryBand } from "./story-band"
+import { BookLessonDialog } from "./book-lesson-dialog"
+import { Clock, Users, Star, MapPin, DollarSign, Calendar } from "lucide-react"
 
 // A chapter header that opens each part of the story.
 function Chapter({ kicker, title, children }: { kicker: string; title: string; children?: ReactNode }) {
   return (
-    <header className="mb-10 text-center sm:mb-14">
-      <p className="newspaper-byline mb-3 text-xs tracking-[0.3em] text-accent sm:text-sm">{kicker}</p>
-      <h3 className="newspaper-headline text-3xl font-black text-primary sm:text-4xl lg:text-5xl">{title}</h3>
+    <header className="mb-12 text-center sm:mb-16">
+      <p className="newspaper-byline mb-4 text-sm tracking-[0.3em] text-accent sm:text-base">{kicker}</p>
+      <h3 className="newspaper-headline text-4xl font-black text-primary sm:text-5xl lg:text-6xl">{title}</h3>
       {children && (
-        <p className="newspaper-subhead mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">{children}</p>
+        <p className="newspaper-subhead mx-auto mt-6 max-w-3xl text-lg text-muted-foreground sm:text-xl lg:text-2xl">
+          {children}
+        </p>
       )}
     </header>
   )
@@ -21,109 +25,119 @@ function Chapter({ kicker, title, children }: { kicker: string; title: string; c
 
 export function ServicesSection() {
   return (
-    <ParallaxSection backgroundImage="Image.jpeg" speed={0.3} className="py-16 sm:py-20 lg:py-24">
-      <div className="site-container relative z-10">
-        {/* Opening */}
-        <header className="mb-16 text-center sm:mb-24">
-          <div className="newspaper-divider mb-6 sm:mb-8" />
-          <h2 className="newspaper-headline text-4xl font-black text-primary sm:text-5xl lg:text-7xl">
-            PROFESSIONAL SERVICES
-          </h2>
-          <p className="newspaper-subhead mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl md:text-2xl">
-            A story told in three chapters: the sound, the stage, and the lesson.
-          </p>
-        </header>
+    <div className="flex flex-col">
+      {/* Opening: the header sets the scene */}
+      <ParallaxSection backgroundImage="/story/header.jpg" speed={0.3} className="py-20 sm:py-28 lg:py-32">
+        <div className="site-container relative z-10 max-w-7xl">
+          <header className="text-center">
+            <div className="newspaper-divider mb-8 sm:mb-10" />
+            <p className="newspaper-byline mb-4 text-sm tracking-[0.3em] text-accent sm:text-base">PROFESSIONAL SERVICES</p>
+            <h2 className="newspaper-headline text-5xl font-black text-primary sm:text-6xl lg:text-8xl">
+              Every story starts with a single note.
+            </h2>
+            <p className="newspaper-subhead mx-auto mt-8 max-w-3xl text-xl text-foreground/90 sm:text-2xl">
+              This is a story in three chapters: the sound you can hear, the moments that shaped it, and the lesson
+              that lets you make your own.
+            </p>
+            <div className="newspaper-divider mt-10 sm:mt-12" />
+          </header>
+        </div>
+      </ParallaxSection>
 
-        {/* Chapter I: the sound */}
-        <section className="mb-20 sm:mb-28">
-          <Chapter kicker="CHAPTER I" title="THE SOUND">
-            Open the record. Tap a cover, then press play.
-          </Chapter>
-          <AlbumPlayer />
-        </section>
+      <StoryBand
+        image="/story/band-1.jpg"
+        quote="It starts in a room, with one saxophone and everyone listening."
+      />
 
-        {/* Chapter II: the stage */}
-        <section className="mb-20 sm:mb-28">
-          <Chapter kicker="CHAPTER II" title="ON STAGE">
-            Watch a live rendition of the standard, featuring the alto saxophone.
-          </Chapter>
+      {/* Chapter I: the sound */}
+      <section className="site-container max-w-7xl py-20 sm:py-28">
+        <Chapter kicker="CHAPTER I" title="THE SOUND">
+        </Chapter>
+        <AlbumPlayer />
+      </section>
 
-          <div className="mx-auto w-full max-w-4xl space-y-8">
-            <div className="flex items-center justify-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cherry text-cherry-foreground">
-                <Play className="h-4 w-4" />
-              </span>
-              <h4 className="newspaper-headline text-xl font-bold sm:text-2xl">YouTube</h4>
+      <StoryBand
+        image="/story/band-2.jpg"
+        quote="Every tune carries the players who shaped it, one phrase at a time."
+      />
+
+      {/* Chapter II: on stage */}
+      <section className="site-container max-w-4xl py-20 text-center sm:py-28">
+        <Chapter kicker="CHAPTER II" title="ON STAGE">
+          Jazz lives in the moment. A room, a rhythm section, and a saxophone trading ideas until the crowd is part of
+          the conversation.
+        </Chapter>
+        <p className="newspaper-subhead mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          Whether it is a wedding, a club night, or a private party, the goal is the same: music that feels like it was
+          written for that exact room.
+        </p>
+      </section>
+
+      <StoryBand
+        image="/story/band-3.jpg"
+        quote="The best sessions end with you playing something you did not know you could."
+      />
+
+      {/* Book a lesson: the final chapter, where the reader joins the story */}
+      <section className="site-container max-w-4xl py-20 sm:py-28">
+        <Chapter kicker="YOUR TURN" title="BOOK A LESSON">
+          The sound you just heard began with lessons like this one. Your story starts with the next session.
+        </Chapter>
+
+        <div className="mx-auto w-full rounded-xl bg-card p-8 shadow-2xl sm:p-12">
+          <h3 className="newspaper-headline mb-8 text-center text-3xl font-bold text-primary sm:text-4xl">
+            Private Saxophone Lessons
+          </h3>
+
+          <div className="mb-10 grid gap-5 text-lg sm:grid-cols-2 sm:text-xl">
+            <div className="flex items-center gap-4">
+              <Clock className="h-6 w-6 flex-shrink-0 text-accent" />
+              <span>60-minute sessions</span>
             </div>
-
-            <div className="aspect-video overflow-hidden rounded-lg bg-black shadow-2xl">
-              <iframe
-                src="https://www.youtube.com/embed/uKx_0PwRIFg"
-                title="Introducing: Michael Webster"
-                className="h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            <div className="flex items-center gap-4">
+              <Users className="h-6 w-6 flex-shrink-0 text-accent" />
+              <span>One-on-one instruction</span>
             </div>
-
-            <div className="text-center">
-              <h5 className="mb-2 font-bold">Introducing: Michael Webster</h5>
-              <p className="text-sm text-muted-foreground sm:text-base">
-                A beautiful rendition of this jazz standard featuring Michael&apos;s signature alto saxophone sound.
-              </p>
+            <div className="flex items-center gap-4">
+              <Star className="h-6 w-6 flex-shrink-0 text-accent" />
+              <span>All skill levels welcome</span>
             </div>
-
-            <div className="text-center">
-              <Button
-                variant="outline"
-                className="border-cherry bg-transparent text-foreground shadow-lg transition-all duration-300 hover:bg-cherry hover:text-cherry-foreground hover:shadow-xl sm:text-base"
-              >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Subscribe to YouTube Channel
-              </Button>
+            <div className="flex items-center gap-4">
+              <MapPin className="h-6 w-6 flex-shrink-0 text-accent" />
+              <span>Bay Area locations</span>
             </div>
           </div>
-        </section>
 
-        {/* Chapter III: the lesson (placed after the stage, per the story) */}
-        <section>
-          <Chapter kicker="CHAPTER III" title="THE LESSON">
-            Learn the sound yourself, one session at a time.
-          </Chapter>
-
-          <div className="mx-auto w-full max-w-xl rounded-xl bg-card p-6 shadow-2xl sm:p-10">
-            <h3 className="newspaper-headline mb-6 text-center text-2xl font-bold text-primary sm:text-3xl">
-              Private Saxophone Lessons
-            </h3>
-
-            <div className="mb-8 space-y-4 text-base sm:text-lg">
-              <div className="flex items-center gap-3">
-                <Clock className="h-5 w-5 text-accent" />
-                <span>60-minute sessions</span>
+          {/* Rates & Availability */}
+          <div className="mb-10 border-t border-border pt-10">
+            <p className="newspaper-byline mb-6 text-center text-sm tracking-[0.2em] text-accent sm:text-base">
+              RATES &amp; AVAILABILITY
+            </p>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="rounded-lg bg-muted/60 p-6 text-center">
+                <DollarSign className="mx-auto mb-3 h-6 w-6 text-accent" />
+                <p className="newspaper-headline text-xl font-bold">Private Lessons</p>
+                <p className="mt-2 text-3xl font-bold text-primary">$75/hour</p>
+                <p className="mt-2 text-muted-foreground">In-person or virtual</p>
               </div>
-              <div className="flex items-center gap-3">
-                <Users className="h-5 w-5 text-accent" />
-                <span>One-on-one instruction</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Star className="h-5 w-5 text-accent" />
-                <span>All skill levels welcome</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-accent" />
-                <span>Bay Area locations</span>
+              <div className="rounded-lg bg-muted/60 p-6 text-center">
+                <Calendar className="mx-auto mb-3 h-6 w-6 text-accent" />
+                <p className="newspaper-headline text-xl font-bold">Live Performances</p>
+                <p className="mt-2 text-3xl font-bold text-primary">Contact for quote</p>
+                <p className="mt-2 text-muted-foreground">Based on event details</p>
               </div>
             </div>
+          </div>
 
-            <div className="text-center">
-              <p className="newspaper-byline mb-4 text-xs text-muted-foreground sm:text-sm">STARTING AT $120/LESSON</p>
-              <Button className="w-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl sm:text-base">
+          <div className="text-center">
+            <BookLessonDialog>
+              <Button className="w-full bg-primary px-8 py-6 text-lg font-bold text-primary-foreground shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl sm:w-auto">
                 Book Lesson
               </Button>
-            </div>
+            </BookLessonDialog>
           </div>
-        </section>
-      </div>
-    </ParallaxSection>
+        </div>
+      </section>
+    </div>
   )
 }

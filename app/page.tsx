@@ -1,7 +1,6 @@
 import { basehub } from "basehub"
 import { Intro } from "./components/intro"
 import { ServicesSection } from "./components/services-section"
-import { ContactSection } from "./components/contact-section"
 import { Newsletter } from "./components/newsletter"
 
 // Fallback data when BaseHub is not available
@@ -48,7 +47,6 @@ export default async function Page() {
     <div className="flex w-full flex-col">
       <Intro />
       <ServicesSection />
-      <ContactSection />
       <Newsletter />
     </div>
   )

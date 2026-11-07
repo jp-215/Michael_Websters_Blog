@@ -11,25 +11,61 @@ interface ParallaxSectionProps {
   className?: string
 }
 
+// Parallax background that stays inside its section.
+// - Progress is measured from where the section sits on screen, not the page's total scroll,
+//   so the photo never slides out of view.
+// - The position eases toward its target every frame, so motion stays smooth instead of stepping.
+// - The photo is 140% of the section height, giving 20% of travel above and below.
 export function ParallaxSection({ children, backgroundImage, speed = 0.5, className = "" }: ParallaxSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current || !backgroundRef.current) return
+    const section = sectionRef.current
+    const background = backgroundRef.current
+    if (!section || !background) return
 
-      const rect = sectionRef.current.getBoundingClientRect()
-      const scrolled = window.pageYOffset
-      const rate = scrolled * -speed
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-      if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
-        backgroundRef.current.style.transform = `translate3d(0, ${rate}px, 0)`
+    let target = 0 // -1 (section entering from below) .. 1 (leaving at top)
+    let current = 0
+    let frame = 0
+
+    const measure = () => {
+      const rect = section.getBoundingClientRect()
+      const viewport = window.innerHeight
+      const center = rect.top + rect.height / 2
+      const raw = (center - viewport / 2) / (viewport / 2 + rect.height / 2)
+      target = Math.max(-1, Math.min(1, raw))
+    }
+
+    const render = () => {
+      current += (target - current) * 0.12
+      const travel = section.offsetHeight * 0.2 * Math.min(1, speed * 2)
+      const y = reduceMotion ? 0 : -current * travel
+      background.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`
+
+      if (Math.abs(target - current) > 0.0005) {
+        frame = requestAnimationFrame(render)
+      } else {
+        frame = 0
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const kick = () => {
+      measure()
+      if (!frame) frame = requestAnimationFrame(render)
+    }
+
+    kick()
+    window.addEventListener("scroll", kick, { passive: true })
+    window.addEventListener("resize", kick)
+
+    return () => {
+      window.removeEventListener("scroll", kick)
+      window.removeEventListener("resize", kick)
+      if (frame) cancelAnimationFrame(frame)
+    }
   }, [speed])
 
   return (
@@ -37,13 +73,13 @@ export function ParallaxSection({ children, backgroundImage, speed = 0.5, classN
       {backgroundImage && (
         <div
           ref={backgroundRef}
-          className="absolute inset-0 w-full h-[120%] bg-cover bg-center bg-no-repeat will-change-transform"
+          className="absolute inset-x-0 -top-[20%] h-[140%] bg-cover bg-center bg-no-repeat will-change-transform"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             transform: "translate3d(0, 0, 0)",
           }}
         >
-          <div className="absolute inset-0 bg-background/60" />
+          <div className="absolute inset-0 bg-background/50" />
         </div>
       )}
       <div className="relative z-10">{children}</div>

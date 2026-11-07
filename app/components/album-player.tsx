@@ -128,7 +128,7 @@ export function AlbumPlayer() {
   }
 
   return (
-    <div id={APPLE_MUSIC_PLAYER_ID} className="scroll-mt-24 mx-auto w-full max-w-4xl">
+    <div id={APPLE_MUSIC_PLAYER_ID} className="scroll-mt-24 mx-auto w-full max-w-5xl">
       {/* Cover flow: swipe or drag to browse. Tap the centered cover to open Now Playing. */}
       <Carousel setApi={setApi} opts={{ align: "center", loop: false }} className="relative w-full">
         <CarouselContent className="-ml-4 items-center">
