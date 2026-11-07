@@ -2,11 +2,8 @@
 
 import { useState, useEffect, useRef } from "react"
 
-const carouselImages = [
-  "/CoverImage.png",
-  "/CoverImageIII.jpeg",
-  "/CoverImageIV.jpeg",
-]
+// Hero rotation: replace these three files in public/story/ with photos of Michael Webster
+const carouselImages = ["/story/hero-1.jpg", "/story/hero-2.jpg", "/story/hero-3.jpg"]
 
 export function Intro() {
   const [currentImage, setCurrentImage] = useState(0)

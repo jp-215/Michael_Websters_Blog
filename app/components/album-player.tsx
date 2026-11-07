@@ -189,15 +189,15 @@ export function AlbumPlayer() {
             aria-modal="true"
             aria-label={`Now playing: ${track.title}`}
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-2xl"
+            className="w-full max-w-[480px] rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-2xl"
           >
             <button
               type="button"
               onClick={closePanel}
               aria-label="Close now playing"
-              className="mx-auto mb-4 flex h-6 w-12 items-center justify-center text-muted-foreground hover:text-foreground"
+              className="mx-auto mb-5 flex h-[30px] w-[60px] items-center justify-center text-muted-foreground hover:text-foreground"
             >
-              <ChevronDown className="h-6 w-6" />
+              <ChevronDown className="h-[30px] w-[30px]" />
             </button>
 
             <img
@@ -218,7 +218,7 @@ export function AlbumPlayer() {
                 onChange={(e) => seek(Number(e.target.value))}
                 className="w-full accent-[hsl(var(--accent))]"
               />
-              <div className="mt-1 flex justify-between text-xs tabular-nums text-muted-foreground">
+              <div className="mt-1 flex justify-between text-sm tabular-nums text-muted-foreground">
                 <span>{formatTime(time)}</span>
                 <span>-{formatTime(Math.max(0, (duration || 0) - time))}</span>
               </div>
@@ -226,30 +226,30 @@ export function AlbumPlayer() {
 
             {/* Track info */}
             <div className="mt-4 text-center">
-              <p className="text-lg font-bold">{track.title}</p>
-              <p className="text-sm text-accent">
+              <p className="text-xl font-bold">{track.title}</p>
+              <p className="text-base text-accent">
                 Michael Webster • Introducing: Michael Webster
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">Preview • full track {track.fullLength}</p>
+              <p className="mt-1 text-sm text-muted-foreground">Preview • full track {track.fullLength}</p>
             </div>
 
             {/* Transport controls */}
-            <div className="mt-6 flex items-center justify-center gap-8">
+            <div className="mt-8 flex items-center justify-center gap-10">
               <button
                 type="button"
                 onClick={rewind}
                 aria-label="Rewind or previous track"
                 className="text-foreground hover:text-accent"
               >
-                <Rewind className="h-8 w-8" />
+                <Rewind className="h-10 w-10" />
               </button>
               <button
                 type="button"
                 onClick={togglePlay}
                 aria-label={isPlaying ? "Pause" : "Play"}
-                className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg hover:bg-accent/90"
+                className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg hover:bg-accent/90"
               >
-                {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="ml-1 h-6 w-6" />}
+                {isPlaying ? <Pause className="h-[30px] w-[30px]" /> : <Play className="ml-1 h-[30px] w-[30px]" />}
               </button>
               <button
                 type="button"
@@ -258,13 +258,13 @@ export function AlbumPlayer() {
                 className="text-foreground hover:text-accent disabled:opacity-30"
                 disabled={!api?.canScrollNext()}
               >
-                <FastForward className="h-8 w-8" />
+                <FastForward className="h-10 w-10" />
               </button>
             </div>
 
             {/* Volume */}
             <div className="mt-6 flex items-center gap-3 text-muted-foreground">
-              <Volume2 className="h-4 w-4 flex-shrink-0" />
+              <Volume2 className="h-5 w-5 flex-shrink-0" />
               <input
                 type="range"
                 aria-label="Volume"
