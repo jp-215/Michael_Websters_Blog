@@ -125,7 +125,7 @@ export function ContactSection() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { icon: Mail, label: "Email", value: "michael@websterjazz.com" },
+                  { icon: Mail, label: "Email", value: "mpwebst@gmail.com" },
                   { icon: Phone, label: "Phone", value: "(415) 555-JAZZ" },
                   { icon: MapPin, label: "Location", value: "Bay Area, California" },
                   { icon: Clock, label: "Response Time", value: "Within 24 hours" },

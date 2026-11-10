@@ -68,7 +68,7 @@ function Footer() {
             <h4 className="newspaper-headline text-base sm:text-lg font-bold mb-4">Get In Touch</h4>
             <div className="space-y-3 text-sm">
               {[
-                { icon: Mail, text: "michael@websterjazz.com" },
+                { icon: Mail, text: "mpwebst@gmail.com" },
                 { icon: Phone, text: "(415) 555-JAZZ" },
                 { icon: MapPin, text: "Bay Area, California" },
                 { icon: Calendar, text: "Response within 24hrs" },
