@@ -14,14 +14,16 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# NEXT_PUBLIC_* values are inlined into the browser bundle at build time, so they
-# are passed as build args. They are not secret.
-ARG NEXT_PUBLIC_EMAILJS_SERVICE_ID
-ARG NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-ARG NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-ENV NEXT_PUBLIC_EMAILJS_SERVICE_ID=$NEXT_PUBLIC_EMAILJS_SERVICE_ID \
-    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=$NEXT_PUBLIC_EMAILJS_TEMPLATE_ID \
-    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=$NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+# EmailJS values come in under their Railway names (SERVICE_ID, TEMPLATE_ID,
+# PUBLIC_KEY) and are mapped to NEXT_PUBLIC_* here. NEXT_PUBLIC_* values are inlined
+# into the browser bundle at build time, so they must be set during the build.
+# They are not secret.
+ARG SERVICE_ID
+ARG TEMPLATE_ID
+ARG PUBLIC_KEY
+ENV NEXT_PUBLIC_EMAILJS_SERVICE_ID=$SERVICE_ID \
+    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=$TEMPLATE_ID \
+    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=$PUBLIC_KEY
 
 # BASEHUB_TOKEN is needed during the build (static post pages query BaseHub).
 # It is used only for this RUN and is not set as an ENV, so it is not present

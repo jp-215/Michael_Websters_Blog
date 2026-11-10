@@ -30,9 +30,9 @@ jobs:
       - name: Build
         env:
           BASEHUB_TOKEN: ${{ secrets.BASEHUB_TOKEN }}
-          NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
-          NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
-          NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+          SERVICE_ID: ${{ secrets.SERVICE_ID }}
+          TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+          PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
         run: npm run build
 
   # 2. Confirm the Dockerfile produces a working image (nothing is pushed).
@@ -54,9 +54,9 @@ jobs:
           tags: michael-webster:ci
           build-args: |
             BASEHUB_TOKEN=${{ secrets.BASEHUB_TOKEN }}
-            NEXT_PUBLIC_EMAILJS_SERVICE_ID=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
-            NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
-            NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+            SERVICE_ID=${{ secrets.SERVICE_ID }}
+            TEMPLATE_ID=${{ secrets.TEMPLATE_ID }}
+            PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}
 
   # 3. Deploy to Railway, only for pushes to main, and only after the checks pass.
   deploy:
